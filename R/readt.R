@@ -83,3 +83,13 @@ readTweets <- function(tweets, verbose=TRUE){
   if (verbose==TRUE) message(length(results.list), " tweets have been parsed.")
   return(results.list)
 }
+
+formatTwDate <- function(datestring, format="datetime"){
+  if (format=="datetime"){
+    date <- as.POSIXct(datestring, format="%a %b %d %H:%M:%S %z %Y")
+  }
+  if (format=="date"){
+    date <- as.Date(datestring, format="%a %b %d %H:%M:%S %z %Y")
+  }
+  return(date)
+}
