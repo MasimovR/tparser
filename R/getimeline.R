@@ -193,6 +193,7 @@ getTimeline <- function(filename, n=3200, oauth_folder="~/credentials", screen_n
     tweets <- tweets + length(json.data)
     max_id <- json.data[[length(json.data)]]$id_str
     message(tweets, " tweets. Max id: ", max_id)
+    return(max_id)
   }
 }
 
