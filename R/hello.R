@@ -19,7 +19,7 @@
 #'
 #'
 
-getStatuses <- function(ids=NULL, filename, oauth_folder, verbose=TRUE, sleep=1){
+getStatuses <- function(ids=NULL, filename, oauth_folder, verbose=TRUE, sleep=0, csv = TRUE){
 
   ## create list of credentials
   creds <- list.files(oauth_folder, full.names=T)
@@ -72,9 +72,24 @@ getStatuses <- function(ids=NULL, filename, oauth_folder, verbose=TRUE, sleep=1)
     }
 
     ## writing to disk
+    if(!csv){
     conn <- file(filename, "a")
     invisible(lapply(json.data, function(x) writeLines(jsonlite::toJSON(x, null="null"), con=conn, useBytes=TRUE)))
     close(conn)
+    } else {
+      conn <- file(filename, "a")
+      invisible(lapply(json.data, function(x) writeLines(jsonlite::toJSON(x, null="null"), con=conn, useBytes=TRUE)))
+      close(conn)
+
+      df <- parseTweets(filename, legacy = T)
+      file.remove(filename)
+
+
+
+      data.table::fwrite(df, file = gsub("json", "csv", filename), append = TRUE)
+
+
+    }
 
     # removing IDs done
     ids.left <- ids.left[-(1:100)]
