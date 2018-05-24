@@ -58,7 +58,7 @@ getStatuses <- function(ids=NULL, filename, oauth_folder, verbose=TRUE, sleep=1)
   ## while there's more data to download...
   while (length(ids.left)>0){
     ## making API call
-    query <- list(id = paste(ids.left[1:100], collapse=","))
+    query <- list(id = paste(ids.left[1:100], collapse=","), tweet_mode = "extended")
     url.data <- httr::GET(url, query = query, httr::config(token = twitter_token))
     Sys.sleep(sleep)
     ## one API call less
