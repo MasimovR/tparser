@@ -188,7 +188,7 @@ parseTweets <- function(tweets, simplify=FALSE, verbose=TRUE, legacy=FALSE){
 
     # constructing data frame with tweet and user variable
     df <- data.frame(
-      text = unlistWithNA(results.list, 'text'),
+      text = unlistWithNA(results.list, 'full_text'),
       retweet_count = unlistWithNA(results.list, 'retweet_count'),
       favorite_count = unlistWithNA(results.list, 'favorite_count'),
       favorited = unlistWithNA(results.list, 'favorited'),
