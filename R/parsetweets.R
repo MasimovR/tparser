@@ -77,7 +77,7 @@
 parseTweets <- function(tweets, simplify=FALSE, verbose=TRUE, legacy=FALSE){
 
   if (!legacy){
-    results <- stream_in(tweets)
+    results <- jsonlite::stream_in(tweets)
 
     retweet_count <- rep(NA, length(results$text))
     if (!is.null(results$retweeted_status.retweet_count)){
