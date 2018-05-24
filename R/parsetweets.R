@@ -92,7 +92,7 @@ parseTweets <- function(tweets, simplify=FALSE, verbose=TRUE, legacy=FALSE){
     }
 
     df <- data.frame(
-      text = results$text,
+      text = results$full_text,
       retweet_count = retweet_count,
       favorite_count = favorite_count,
       favorited = results$favorited,
